@@ -33,7 +33,8 @@ Can be used for:
 	# Predict a new point  
 	forecast = example.predict([[0, 1]])  
 	print("Prediction:", forecast)
-	-----------------------------------------------
+	```
+	```
 	Console:
 	[[0.00184528]
 	[0.99713676]
