@@ -150,14 +150,16 @@ class LinearRegression:
         And simplify:
         x = inverse(A' • A) • A' • b
         """
-
         inverse_chunk = np.dot(A.T, A)
         inverse_chunk = np.linalg.inv(inverse_chunk)
         before_b = np.dot(inverse_chunk, A.T)
         self.coefficients = np.dot(before_b, b)
 
+        # Calculated Observation
         self.y_hat = np.dot(A, self.coefficients)
         self.observations = len(A)
+
+        # Calculating some variables for model evaluation
         ssr = np.sum(np.square(self.y_hat - np.mean(b)))
         sse = np.sum(np.square(b - self.y_hat))
         self.r_squared = round(float(ssr) / float(ssr + sse), 4)
@@ -165,5 +167,11 @@ class LinearRegression:
         self.accuracy = round(float(self.standard_error / np.mean(b)), 3)
 
     def predict(self, a):
+        """
+        Returns a prediction based on the model coefficients
+
+        :param a: Input matrix
+        :return: The forecast of the linear regression
+        """
         return np.dot(a, self.coefficients)
 
