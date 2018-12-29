@@ -25,6 +25,7 @@ class NeuralNetwork:
         :param y: output matrix
         :param trials: number of trials to be run on instantiation call
         """
+
         # Record input/output matrices, add bias column
         self.x = np.pad(x, ((0, 0), (0, 1)), mode='constant', constant_values=1.0)
         self.y = y
@@ -117,4 +118,52 @@ class NeuralNetwork:
         if derivative:
             return self.sigmoid(a) * (1 - self.sigmoid(a))
         return 1 / (1 + np.round(np.exp(-a), 20))
+
+
+class LinearRegression:
+    """
+    A class to run and analyze a Linear Regression
+    """
+    def __init__(self, A, b):
+        """
+        Run a Linear Regression
+
+        :param A: input matrix
+        :param b: output matrix
+        """
+
+        # Record input/output matrices, add bias column
+        self.A = np.pad(A, ((0, 0), (0, 1)), mode='constant', constant_values=1.0)
+        self.b = b
+
+        """
+        Need to solve for x:
+        A • x = b                   
+        
+        Can only eliminate A by taking the dot product with inverse(A), if we know A is square.
+        We must make A square, which we can do with its transpose:
+        (A' • A) • x = A' • b
+        
+        Now we can use the inverse:
+        inverse(A' • A) • (A' • A) • x = inverse(A' • A) • A' • b
+        
+        And simplify:
+        x = inverse(A' • A) • A' • b
+        """
+
+        inverse_chunk = np.dot(A.T, A)
+        inverse_chunk = np.linalg.inv(inverse_chunk)
+        before_b = np.dot(inverse_chunk, A.T)
+        self.coefficients = np.dot(before_b, b)
+
+        self.y_hat = np.dot(A, self.coefficients)
+        self.observations = len(A)
+        ssr = np.sum(np.square(self.y_hat - np.mean(b)))
+        sse = np.sum(np.square(b - self.y_hat))
+        self.r_squared = round(float(ssr) / float(ssr + sse), 4)
+        self.standard_error = np.sqrt(sse / 4)
+        self.accuracy = round(float(self.standard_error / np.mean(b)), 3)
+
+    def predict(self, a):
+        return np.dot(a, self.coefficients)
 

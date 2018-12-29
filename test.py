@@ -2,39 +2,28 @@ import numpy as np
 import brain
 
 # Input Matrix, all inputs from 0 to 1 (bias built in)
-X = np.array([[0, 0],
-              [0, 1],
-              [1, 0],
-              [1, 1]])
+X = np.array([[1, 2, 3],
+              [3, 4, 3],
+              [1, 3, 7],
+              [4, 9, 4]])
 
 # Output Matrix, all outputs from 0 to 1
-Y = np.array([[0],
-              [1],
-              [1],
-              [0]])
+Y = np.array([[7],
+              [9],
+              [10],
+              [18]])
 
-# Create Neural Network in one line
-#
-#   Parameters:
-#   - inputs: input matrix
-#   - layers: hidden layer sizes
-#   - outputs: output matrix
-#   - trials: (optional) number of trials to train
-#
-#   Returns:
-#   - NeuralNetwork Object
-inputs = X
-layers = [5, 5]
-outputs = Y
-example = brain.NeuralNetwork(inputs, layers, outputs)
+# Do Linear Regression
+example = brain.LinearRegression(X, Y)
 
-# Train the Neural Network
-trials = 10000
-example.train(trials)
+# Some Evaluation metrics (no p-value yet)
+print("R Squared:", example.r_squared)
+print("Accuracy:", example.accuracy, "< 0.2?")
 
-# Print most recent prediction
-print(example.y_hat)
+# Coefficients
+print("Coefficients:\n", example.coefficients)
 
-# Predict a new point
-forecast = example.predict([[0, 1]])
-print("Point Estimate:", forecast)
+# To Predict a Point
+print("Prediction:\n", example.predict(X))
+
+
