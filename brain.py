@@ -117,7 +117,7 @@ class NeuralNetwork:
         """
         if derivative:
             return self.sigmoid(a) * (1 - self.sigmoid(a))
-        return 1 / (1 + np.round(np.exp(-a), 20))
+        return 1 / (1 + np.exp(-a))
 
 
 class LinearRegression:
