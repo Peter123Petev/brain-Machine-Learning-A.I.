@@ -10,13 +10,14 @@ __email__ = "pspetev@gmail.com"
 __status__ = "Development"
 
 import numpy as np
+import math
 
 
 class NeuralNetwork:
     """
     A class to represent a simple Neural Network
     """
-    def __init__(self, x, inner_layers, y, trials=0):
+    def __init__(self, x, inner_layers, y):
         """
         Initialize the Neural Network with inputs, outputs, and the sizes of hidden layers.
 
@@ -40,9 +41,13 @@ class NeuralNetwork:
         for i in range(0, len(self.layer_sizes) - 1):
             self.synapses.append(2 * np.random.random((self.layer_sizes[i], self.layer_sizes[i + 1])) - 1)
 
-        # Optionally run trials
+        # Evaluation Criteria
         self.y_hat = None
-        self.train(trials)
+        self.error = math.inf
+
+    def fit(self, max_error):
+        while self.error > max_error:
+            self.train(1)
 
     def train(self, trials):
         for trial in range(0, trials):
@@ -89,6 +94,9 @@ class NeuralNetwork:
             """
             for i in range(0, len(self.synapses)):
                 self.synapses[i] += layers[i].T.dot(deltas[i])
+
+            # Set Model Error
+            self.error = np.max(np.abs(self.y - layers[len(self.layer_sizes) - 1]))
 
             # Track Most Recent y hat for debugging
             self.y_hat = layers[len(layers) - 1]
