@@ -19,9 +19,9 @@ Can be used for:
 	 Y = np.array([[1], [1], [0], [0]])
 	 
 	 # Create Neural Network
-	 inputs = X                     # Input Matrix 
-	 layers = [100, 100, 100]       # Hidden Layer Sizes
-	 outputs = Y                    # Output Matrix
+	 inputs = X						# Input Matrix
+	 layers = [100, 100, 100]		# Hidden Layer Sizes
+	 outputs = Y					# Output Matrix
 	 example = brain.NeuralNetwork(X, [100, 100, 100], Y)
 	 
 	 # Train the neural network 10000 times
@@ -79,6 +79,48 @@ Can be used for:
 	[10.43223737]
 	[18.03929431]]
 	```
-* (W.I.P.) Genetic Algos:  
+* Formula Guessing "Genetic" Algorithm
+	```python
+	import numpy as np
+	import brain
+	
+	# Input Matrix, all inputs from 0 to 1
+	X = np.array([[1, 0], [0, 1], [1, 1], [0, 0]])
+	
+	# Output Matrix, all outputs from 0 to 1
+	Y = np.array([[1], [1], [0], [0]])
+	
+	# Create the Guesses
+	example = brain.GuessFormula(X, Y)
+	
+	# Fit Guesses to Data
+	example.fit(0.99)
+	
+	# Print best guest
+	example.best_guess()
+	
+	# Print a new point
+	forecast = example.predict(X)
+	print("Prediction:\n", forecast)
+	```
+	```
+	Fitness: 0.15522
+	...
+	Fitness: 0.56057
+	...
+	Fitness: 0.99813
+	Best Model Guess:
+	Node: 0, function: input
+	Node: 1, function: input
+	Node: 2, function: output
+	Node: 3, function: abs
+	0 -> 3: -0.657
+	0 -> 3: 0.218
+	1 -> 3: 0.868
+	3 -> 2: 0.89
+	3 -> 2: -0.31
+	Prediction:
+	[[1.0175044948875733], [1.00661566762282],[0.010888827264753261], [0.0]]
+	```
 * (W.I.P.) Probability:  
 *
