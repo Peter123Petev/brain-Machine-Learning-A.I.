@@ -8,9 +8,9 @@ X = np.array([[1, 0], [0, 1], [1, 1], [0, 0]])
 Y = np.array([[1], [1], [0], [0]])
 
 # Create Neural Network
-inputs = X                      # Input Matrix
-layers = [100, 100, 100]        # Hidden Layer Sizes
-outputs = Y                     # Output Matrix
+inputs = X  # Input Matrix
+layers = [100, 100, 100]  # Hidden Layer Sizes
+outputs = Y  # Output Matrix
 example = brain.NeuralNetwork(X, [100, 100, 100], Y)
 
 # Train the neural network 10000 times
@@ -25,4 +25,3 @@ print("Max Error:", example.error)
 # Predict a new point
 forecast = example.predict([[0, 0]])
 print("Prediction:", forecast)
-
