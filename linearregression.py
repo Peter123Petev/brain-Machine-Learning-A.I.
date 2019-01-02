@@ -15,6 +15,7 @@ import numpy as np
 class LinearRegression:
     """
     A class to run and analyze a Linear Regression
+    TODO: P-Value
     """
 
     def __init__(self, a, b):
