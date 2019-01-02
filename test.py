@@ -7,21 +7,16 @@ X = np.array([[1, 0], [0, 1], [1, 1], [0, 0]])
 # Output Matrix, all outputs from 0 to 1
 Y = np.array([[1], [1], [0], [0]])
 
-# Create Neural Network
-inputs = X  # Input Matrix
-layers = [100, 100, 100]  # Hidden Layer Sizes
-outputs = Y  # Output Matrix
-example = brain.NeuralNetwork(X, [100, 100, 100], Y)
+# Create the Guesses
+example = brain.GuessFormula(X, Y)
 
-# Train the neural network 10000 times
-example.train(10000)
+# Fit Guesses to Data
+example.fit(0.99)
 
-# Train the neural network until maximum error
-example.fit(0.0001)
+# Print best guest
+example.best_guess()
 
-# Print Max Model Error
-print("Max Error:", example.error)
+# Print a new point
+forecast = example.predict(X)
+print("Prediction:\n", forecast)
 
-# Predict a new point
-forecast = example.predict([[0, 0]])
-print("Prediction:", forecast)
