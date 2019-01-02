@@ -12,6 +12,7 @@ __status__ = "Development"
 import numpy as np
 import neuralnetwork
 import linearregression
+import guessformula
 
 
 def NeuralNetwork(x, layers, y):
@@ -20,4 +21,8 @@ def NeuralNetwork(x, layers, y):
 
 def LinearRegression(x, y):
     return linearregression.LinearRegression(x, y)
+
+
+def GuessFormula(x, y):
+    return guessformula.GuessFormula(x.tolist(), y.tolist())
 
