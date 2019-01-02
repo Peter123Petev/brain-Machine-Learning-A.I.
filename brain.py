@@ -9,10 +9,7 @@ __maintainer__ = "Peter Petev"
 __email__ = "pspetev@gmail.com"
 __status__ = "Development"
 
-import numpy as np
-import neuralnetwork
-import linearregression
-import guessformula
+from brain_methods import linearregression, neuralnetwork, guessformula
 
 
 def NeuralNetwork(x, layers, y):
