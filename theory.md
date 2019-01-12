@@ -1,8 +1,8 @@
 # Theory
 Some theory behind Machine Learning / A.I.
 ---
-* [Linear Regression](mlr)
-* [Artificial Neural Network](ann)
+* [Linear Regression](#mlr)
+* [Artificial Neural Network](#ann)
 ---
 #### Linear Regression<a name="mlr"></a>
 A: Input Data Matrix (rows as data inputs with columns as variables)
